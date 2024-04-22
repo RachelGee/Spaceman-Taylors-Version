@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system ui, sans-serif;
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+
+}
+
+h1 {
+    .flex-parent{
+    display: flex;
+    align-content: center;
+    }
+}
+
+#ready-for-it {
+    display: flex;
+    align-content: center;
+}
+
