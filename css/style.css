@@ -5,21 +5,47 @@
     font-family: system ui, sans-serif;
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
+    text-align: center;
 }
 
-body {
+button {
+    background: light gray;
+    border-radius: 1rem;
+    padding: 0.7rem;
+    cursor: grab; 
+}
+
+#intro {
+display: inline-flexbox;
+}
+
+#rules {
+display: none;
+}
+
+#gameboard {
+    display: none;
+}
+
+#modal-rules {
+display: flex;
+align-items: center;
+justify-content: center;
+position: absolute;
+width: 100%;
+height: 100%;
+background: image(https://imgur.com/a/8J2XSzS);
+}
+
+#lets-play {
 
 }
 
-h1 {
-    .flex-parent{
+#keyboard {
+    display: grid; 
+}
+
+.gameboard {
     display: flex;
-    align-content: center;
-    }
-}
 
-#ready-for-it {
-    display: flex;
-    align-content: center;
 }
-
