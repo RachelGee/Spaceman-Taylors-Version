@@ -19,16 +19,9 @@ button {
 display: inline-flexbox;
 }
 
-#rules {
-display: none;
-}
-
-#gameboard {
-    display: none;
-}
-
 #modal-rules {
 display: flex;
+border: 3px solid black;
 align-items: center;
 justify-content: center;
 position: absolute;
@@ -37,15 +30,41 @@ height: 100%;
 background: image(https://imgur.com/a/8J2XSzS);
 }
 
+#rules {
+display: none;
+}
+
+#gameboard {
+    display: none;
+}
+
+
 #lets-play {
 
 }
 
-#keyboard {
-    display: grid; 
-}
-
-.gameboard {
+.keyboard-container {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    width: 100px;
+    background-color: purple;
+    font-size: 25px;
+} 
 
+.button-container {
+width: 2000px;
+height: 200px;
+float: inline-start;
+margin: 20px;
 }
+
+.key {
+    width: 5%;
+    aspect-ratio: 1/1;
+    border: 3px solid black;
+    font-size: 20px;
+    text-align: center;
+  }
+  

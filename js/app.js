@@ -8,11 +8,13 @@ console.log('testing');
 const introPage = $(`#intro`)
 const readyButton = $(`#ready-for-it`)
 const rulesPage = $('#rules')
-const gameBoardPage = $(`#gameboard`)
 const letsPlayButton = $(`#lets-play`)
+const gameBoardPage = $(`#gameboard`)
 const restartButton = $(`#restart`)
 const skiptButton = $(`#skip`)
-
+const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+const lyricBox = $(`#lyricBox`)
+const statusMsg = $(`#status-message`)
 /*---------- Variables (state) ---------*/
 
 
@@ -22,8 +24,7 @@ const restartButtonEl = document.querySelector('#restartButton');
 
 
 /*-------------- Functions -------------*/
-// load lyric to lyric box
-// match 
+
 
 /*----------- Event Listeners ----------*/
 
