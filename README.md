@@ -10,6 +10,7 @@ The object is to finish the lyric  in less than 10 guesses before Taylor has to 
 -- SCREENSHOTS--
 
 -- LINK TO DEPLOYED GAME --
+https://rachelgee.github.io/Spaceman-Taylors-Version/ 
 
 -- Link my assets?--
 

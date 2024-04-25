@@ -1,5 +1,3 @@
-/* for guess console: make sure to give them class = "key" as divs are added*/
-
 
 function $(cssSelector) {
     return document.querySelector(cssSelector)
@@ -16,9 +14,10 @@ const gameBoardPage = $(`#gameboard`)
 const restartButton = $(`#restart`)
 const skipButton = $(`#skip`)
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-const lyricBox = $(`#lyricBox`)
+const lyricBox = $(`#lyric-box`)
 const statusMsg = $(`#status-message`)
 const guessConsole =$(`#guess-console`)
+
 
 const turns = [
     {
@@ -51,6 +50,8 @@ const turns = [
 /*---------- Variables (state) ---------*/
 let correctGuessBox = ""
 let turnIndex = 0;
+let numberOfClicks = 0;
+
 
 
 /*----- Cached Element References  -----*/
@@ -61,27 +62,50 @@ const keyboardButtons = document.querySelectorAll(`.key`);
 const guessConsoleContainer = document.querySelector(`#guess-console`);
 
 /*-------------- Functions -------------*/
+// //checkForAWinOrLoss(answer){
+// Check if number of clicks is under the limit, if not, return “lose”
+// Check if length of the correct guesses is the same as the answer, if so, return ‘win’
+// Else return;
+// }
+// WIN FUNCTION = all letter values correctly guessed before 9th turn.
 
-// Initialize game >> display Lyric (turn) in lyric box
-
-// WIN LOSS FUNCTION
-
-
-const generateGuessBoxes = () => {
-    const word = turns[turnIndex].answer 
-    // string.split() to find index of guessed letter placement 
+const clearBoard = () => {
+    const guessBoxes = document.querySelectorAll('[id^="guess-box"]');
+    guessBoxes.forEach(guessBox => {
+        console.log(guessBox)
+        guessBox.parentNode.removeChild(guessBox);
+    })
+    keyboardButtons.forEach(button => {
+        button.disabled = false
+    })
+    statusMessageEl.textContent = ""
 }
 
-const guess = (event) => {
+const generateGuessBoxes = () => {
+    const letters = turns[turnIndex].answer.split("");
+    for(let [index, letter] of letters.entries()){
+      let divElement = document.createElement('div');
+      console.log(letter);
+       divElement.classList.add('key');
+       divElement.id=`guess-box-${index}`
+       divElement.innerText = "";
+       guessConsole.appendChild(divElement);
+ }
+}
+
+const guess = (event) => {  // pass in turn.answer to check length against right answer
+    numberOfClicks += 1
     const value = event.target.value
     const turn = turns[turnIndex]
-    if (turn.answer.indexOf(value) > -1) {
+    const answerIndex = turn.answer.indexOf(value)
+    if (answerIndex > -1) {
         console.log("CORRECT", value)
         event.target.disabled = true
-        statusMessageEl.textContent = "Yay! That's right!"
-        // do stuff for when it's right
-        // fill in the blank in the guess console box
-        // use the result of turn.answer.indexOf(value) to know where to put the letter
+        statusMessageEl.textContent = "Yay! That's right! Keep guessing!"
+        const letterBox = document.getElementById(`guess-box-${answerIndex}`)
+        letterBox.textContent = value 
+        //Const correctGuesses = []
+        // correctGuess.append(value)
     } else {
         console.log("WRONG", value)
         event.target.disabled = true
@@ -101,11 +125,17 @@ readyButton.addEventListener('click',function(){
 letsPlayButton.addEventListener('click',function(){
     rulesPage.style.display = "none" 
     gameBoardPage.style.display = "initial"
+    turnIndex = Math.floor(Math.random()* turns.length)
+    lyricBox.textContent = turns[turnIndex].display
+    console.log(turnIndex)
+    generateGuessBoxes()
+
 })
 
 restartButton.addEventListener('click',function(){
     gameBoardPage.style.display = "none" 
-    rulesPage.style.display = "initial"
+    introPage.style.display = "initial"
+    clearBoard();
 })
 
 skipButton.addEventListener('click',function(){
@@ -114,9 +144,10 @@ skipButton.addEventListener('click',function(){
     }  else {
         turnIndex = 0;
     }
-    console.log("Next", turnIndex)
+    console.log("Next", turnIndex) // use this to update lyricbox display..maybe change to "NEXT BUTTON"
     })
 
 keyboardButtons.forEach(function(button) {
     button.addEventListener('click', guess)
 })
+
