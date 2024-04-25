@@ -14,7 +14,7 @@ const rulesPage = $('#rules')
 const letsPlayButton = $(`#lets-play`)
 const gameBoardPage = $(`#gameboard`)
 const restartButton = $(`#restart`)
-const skiptButton = $(`#skip`)
+const skipButton = $(`#skip`)
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 const lyricBox = $(`#lyricBox`)
 const statusMsg = $(`#status-message`)
@@ -54,6 +54,11 @@ const guessConsoleContainer = document.querySelector(`#guess-console`);
 
 /*-------------- Functions -------------*/
 
+// Initialize game >> display Lyric (turn) in lyric box
+// Iterate to next "turn" via skip button 
+
+// WIN LOSS FUNCTION
+
 
 const generateGuessBoxes = () => {
     const word = turns[turnIndex].answer 
@@ -74,8 +79,8 @@ const guess = (event) => {
         console.log("WRONG", value)
         event.target.disabled = true
         statusMessageEl.textContent = "Oops! Wrong guess, try again!"
-        // do different stuff
         // move taylor- screenshots in separate file and link into JS. Iterate to next image as background
+        // allow guessing up to 9 instances??
     }
 }
 
@@ -95,6 +100,16 @@ restartButton.addEventListener('click',function(){
     gameBoardPage.style.display = "none" 
     rulesPage.style.display = "initial"
 })
+
+skipButton.addEventListener('click',function(){
+    if (turnIndex < turns.length -1) {
+        turnIndex++;
+    }  else {
+        turnIndex = 0;
+    }
+    console.log("Next", turnIndex)
+    })
+
 
 keyboardButtons.forEach(function(button) {
     button.addEventListener('click', guess)
