@@ -13,11 +13,9 @@ const letsPlayButton = $(`#lets-play`)
 const gameBoardPage = $(`#gameboard`)
 const restartButton = $(`#restart`)
 const skipButton = $(`#skip`)
-const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 const lyricBox = $(`#lyric-box`)
 const statusMsg = $(`#status-message`)
 const guessConsole =$(`#guess-console`)
-
 
 const turns = [
     {
@@ -60,6 +58,7 @@ const restartButtonEl = document.querySelector('#restartButton');
 const skipButtonEl = document.querySelector('#skipButton');
 const keyboardButtons = document.querySelectorAll(`.key`);
 const guessConsoleContainer = document.querySelector(`#guess-console`);
+const stageBackground = document.querySelector('.parent-container');
 
 /*-------------- Functions -------------*/
 // //checkForAWinOrLoss(answer){
@@ -67,7 +66,7 @@ const guessConsoleContainer = document.querySelector(`#guess-console`);
 // Check if length of the correct guesses is the same as the answer, if so, return ‘win’
 // Else return;
 // }
-// WIN FUNCTION = all letter values correctly guessed before 9th turn.
+
 
 const clearBoard = () => {
     const guessBoxes = document.querySelectorAll('[id^="guess-box"]');
@@ -113,6 +112,7 @@ const guess = (event) => {  // pass in turn.answer to check length against right
         // move taylor- screenshots in separate assets file and link. Iterate to next image as background
         // allow guessing up to 9 instances??
     }
+    stageBackground.style.backgroundImage = `url(assets/Position${numberOfClicks}.png)`
 }
 
 /*----------- Event Listeners ----------*/
