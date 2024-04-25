@@ -26,8 +26,8 @@ const turns = [
         answer: 'PROBLEM'
     },
     {
-        display: "Romeo _ _ _ _ me I've been feeling so alone",
-        answer: 'SAVE'
+        display: "Like can you just not, step on my _ _ _ _ ? You need to calm down",
+        answer: 'GOWN'
     },
     {
         display: "I've got a long list of ex- _ _ _ _ _ _ they'll tell you I'm insane",
@@ -36,6 +36,14 @@ const turns = [
     {
         display: "I promise that you'll never find _ _ _ _ _ _ _ like ME",
         answer: 'ANOTHER'
+    },
+    {
+        display: "Romeo _ _ _ _ me I've been feeling so alone",
+        answer: 'SAVE'
+    },
+    {
+        display: "And they would toast to me, oh, Let the players play. I'd be just like Leo in Saint- _ _ _ _ _ _",
+        answer: 'TROPEZ'
     }
 ]
 
@@ -55,7 +63,6 @@ const guessConsoleContainer = document.querySelector(`#guess-console`);
 /*-------------- Functions -------------*/
 
 // Initialize game >> display Lyric (turn) in lyric box
-// Iterate to next "turn" via skip button 
 
 // WIN LOSS FUNCTION
 
@@ -79,7 +86,7 @@ const guess = (event) => {
         console.log("WRONG", value)
         event.target.disabled = true
         statusMessageEl.textContent = "Oops! Wrong guess, try again!"
-        // move taylor- screenshots in separate file and link into JS. Iterate to next image as background
+        // move taylor- screenshots in separate assets file and link. Iterate to next image as background
         // allow guessing up to 9 instances??
     }
 }
@@ -109,7 +116,6 @@ skipButton.addEventListener('click',function(){
     }
     console.log("Next", turnIndex)
     })
-
 
 keyboardButtons.forEach(function(button) {
     button.addEventListener('click', guess)
