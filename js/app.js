@@ -56,7 +56,8 @@ const guessConsoleContainer = document.querySelector(`#guess-console`);
 
 
 const generateGuessBoxes = () => {
-    const word = turns[turnIndex].answer
+    const word = turns[turnIndex].answer 
+    // string.split() to find index of guessed letter placement 
 }
 
 const guess = (event) => {
@@ -69,9 +70,8 @@ const guess = (event) => {
         // do stuff for when it's right
         // fill in the blank in the guess console box
         // use the result of turn.answer.indexOf(value) to know where to put the letter
-        // __ __ __ __ __
     } else {
-        console.log("WRONG")
+        console.log("WRONG", value)
         event.target.disabled = true
         statusMessageEl.textContent = "Oops! Wrong guess, try again!"
         // do different stuff
