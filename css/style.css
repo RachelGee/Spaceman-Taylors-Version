@@ -17,10 +17,14 @@
 
 #intro {
     display: inline-flexbox;
+    padding-inline-start: 20px;
+    background: url(../assets/WELCOME\ PAGE\ .png) no-repeat center center fixed;
+    background-size: cover;
+    
 }
 
 #modal-rules {
-    display: flex;
+    display: inline-flexbox;
     border: 3px solid black;
     align-items: center;
     justify-content: center;
@@ -31,6 +35,14 @@
     background-size: cover;
 }
 
+.modal-rules-content {
+    display: inline-flex;
+   background-color: white;
+   max-width: 55%;
+   border-radius: 1rem;
+   padding: 0.5em;
+   
+}
 #rules {
     display: none;
 }
@@ -40,7 +52,9 @@
 }
 
 
-#lets-play {}
+#lets-play {
+
+}
 
 
 .keyboard-container {
@@ -62,11 +76,13 @@
 
 #status-message {
     border: 3px solid black;
-    /* width: 40vw; */
+    border-radius: 1rem;
+    width: 40vw;
 }
 #lyric-box {
     display: flex;
     border: 3px solid black;
+    border-radius: 1rem;
     /* width: 40vw; */
     height: 15vw;
     align-items: center;
@@ -76,7 +92,6 @@
 #guess-console {
     display: flex;
     border: 2px solid black;
-    /* width: 40vw; */
     height: 10vh;
     justify-content: center;
 }

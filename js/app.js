@@ -30,7 +30,7 @@ const turns = [
         answer: 'SAVE'
     },
     {
-        display: "I've got long list of ex- _ _ _ _ _ _ they'll tell you I'm insane",
+        display: "I've got a long list of ex- _ _ _ _ _ _ they'll tell you I'm insane",
         answer: 'LOVERS'
     },
     {
@@ -41,37 +41,41 @@ const turns = [
 
 
 /*---------- Variables (state) ---------*/
-let answerFeedback = "OOPS! Wrong guess, try again!"
 let correctGuessBox = ""
 let turnIndex = 0;
 
 
 /*----- Cached Element References  -----*/
-const statusMessageEl = document.querySelector('#status-Message');
+const statusMessageEl = document.querySelector('#status-message');
 const restartButtonEl = document.querySelector('#restartButton');
 const skipButtonEl = document.querySelector('#skipButton');
 const keyboardButtons = document.querySelectorAll(`.key`);
+const guessConsoleContainer = document.querySelector(`#guess-console`);
 
 /*-------------- Functions -------------*/
 
 
+const generateGuessBoxes = () => {
+    const word = turns[turnIndex].answer
+}
+
 const guess = (event) => {
-    const value = event.target.value // a letter from your button
+    const value = event.target.value
     const turn = turns[turnIndex]
     if (turn.answer.indexOf(value) > -1) {
-        console.log("YAYYYYY")
+        console.log("CORRECT", value)
+        event.target.disabled = true
+        statusMessageEl.textContent = "Yay! That's right!"
         // do stuff for when it's right
-        // disable that button
-        // show a message (dialog)
-        // fill in the blank in the display
-        // you can use the result of turn.answer.indexOf(value) to know where to put the letter
+        // fill in the blank in the guess console box
+        // use the result of turn.answer.indexOf(value) to know where to put the letter
         // __ __ __ __ __
     } else {
-        console.log("BOOOO")
+        console.log("WRONG")
+        event.target.disabled = true
+        statusMessageEl.textContent = "Oops! Wrong guess, try again!"
         // do different stuff
-        // disable that button
-        // show a message
-        // move taylor
+        // move taylor- screenshots in separate file and link into JS. Iterate to next image as background
     }
 }
 
