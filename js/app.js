@@ -17,6 +17,7 @@ const lyricBox = $(`#lyric-box`)
 const statusMsg = $(`#status-message`)
 const guessConsole =$(`#guess-console`)
 
+
 const turns = [
     {
         display: "It's me, hi, I'm the _ _ _ _ _ _ _, it's me",
@@ -49,35 +50,33 @@ const turns = [
 let correctGuessBox = ""
 let turnIndex = 0;
 let numberOfClicks = 0;
-
+let correctGuess = 0;
 
 
 /*----- Cached Element References  -----*/
 const statusMessageEl = document.querySelector('#status-message');
-const restartButtonEl = document.querySelector('#restartButton');
+const restartButtonEl = document.querySelector('#restart');
 const skipButtonEl = document.querySelector('#skipButton');
 const keyboardButtons = document.querySelectorAll(`.key`);
 const guessConsoleContainer = document.querySelector(`#guess-console`);
 const stageBackground = document.querySelector('.parent-container');
 
 /*-------------- Functions -------------*/
-// //checkForAWinOrLoss(answer){
-// Check if number of clicks is under the limit, if not, return “lose”
-// Check if length of the correct guesses is the same as the answer, if so, return ‘win’
-// Else return;
-// }
 
 
 const clearBoard = () => {
     const guessBoxes = document.querySelectorAll('[id^="guess-box"]');
     guessBoxes.forEach(guessBox => {
         console.log(guessBox)
-        guessBox.parentNode.removeChild(guessBox);
+        guessBox.parentNode.removeChild(guessBox);  
     })
     keyboardButtons.forEach(button => {
         button.disabled = false
     })
     statusMessageEl.textContent = ""
+    stageBackground.style.backgroundImage = `url(assets/Position0.png)`  
+    numberOfClicks = 0;
+    correctGuess = 0;
 }
 
 const generateGuessBoxes = () => {
@@ -92,7 +91,7 @@ const generateGuessBoxes = () => {
  }
 }
 
-const guess = (event) => {  // pass in turn.answer to check length against right answer
+const guess = (event) => {  
     numberOfClicks += 1
     const value = event.target.value
     const turn = turns[turnIndex]
@@ -103,17 +102,31 @@ const guess = (event) => {  // pass in turn.answer to check length against right
         statusMessageEl.textContent = "Yay! That's right! Keep guessing!"
         const letterBox = document.getElementById(`guess-box-${answerIndex}`)
         letterBox.textContent = value 
-        //Const correctGuesses = []
-        // correctGuess.append(value)
+        correctGuess++   // incrementing correct guesses
     } else {
         console.log("WRONG", value)
         event.target.disabled = true
         statusMessageEl.textContent = "Oops! Wrong guess, try again!"
-        // move taylor- screenshots in separate assets file and link. Iterate to next image as background
-        // allow guessing up to 9 instances??
+        
     }
     stageBackground.style.backgroundImage = `url(assets/Position${numberOfClicks}.png)`
-}
+
+    if (correctGuess === turn.answer.length) {
+        console.log('WINNER');
+        keyboardButtons.forEach((button) => {
+          button.disabled = true;
+          statusMessageEl.textContent = 'You saved the show! You WIN!';
+          numberOfClicks = 0;
+        });
+      } else if (numberOfClicks === 9) {
+        keyboardButtons.forEach((button) => {
+          button.disabled = true;
+          console.log(statusMessageEl.textContent = 'AWKWARD...you lost');
+          numberOfClicks=0
+        });}
+
+    }  
+
 
 /*----------- Event Listeners ----------*/
 
@@ -138,16 +151,6 @@ restartButton.addEventListener('click',function(){
     clearBoard();
 })
 
-skipButton.addEventListener('click',function(){
-    if (turnIndex < turns.length -1) {
-        turnIndex++;
-    }  else {
-        turnIndex = 0;
-    }
-    console.log("Next", turnIndex) // use this to update lyricbox display..maybe change to "NEXT BUTTON"
-    })
-
 keyboardButtons.forEach(function(button) {
     button.addEventListener('click', guess)
 })
-
