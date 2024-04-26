@@ -21,11 +21,8 @@ https://rachelgee.github.io/Spaceman-Taylors-Version/
 Image assets that I created in Canva for the gameboard background and intro page are included in my "assets' folder in this repository. 
 
 WIRE FRAMES:
-
-![alt text](<WELCOME PAGE  (1).png>)
-
-![alt text](<MODAL2- RULES- LET'S PLAY click.png>)
-
+![alt text](MODAL.png)
+![alt text](<MODAL2- RULES- LET'S PLAY.png>)
 ![alt text](GAMEBOARD.png)
 
 
